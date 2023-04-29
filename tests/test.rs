@@ -66,3 +66,24 @@ fn move_multiple_rows_up() {
     ], board
     )
 }
+
+#[test]
+fn move_non_regular_rows_up() {
+    let mut board = [
+        [0, 0, 0, 0],
+        [0, 0, 2, 0],
+        [2, 0, 2, 2],
+        [4, 4, 8, 4],
+    ];
+
+    up(&mut board);
+
+    assert_eq!(
+        [
+            [2, 4, 2, 2],
+            [4, 0, 2, 4],
+            [0, 0, 8, 0],
+            [0, 0, 0, 0],
+    ], board
+    )
+}
