@@ -11,22 +11,28 @@ fn up_it_not_modify_empty_board () {
     ];
 
 
-    let originalBoard = board;
-    up(&board);
+    up(&mut board);
 
-    assert_eq!(originalBoard, board);
+    assert_eq!(
+        [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ]
+        , board);
 }
 
 #[test]
 fn up_it_moves_elements_up () {
     let mut board = [
         [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
         [2, 2, 2, 2],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
     ];
 
-    up(&board);
+    up(&mut board);
 
     assert_eq!(
         [
@@ -34,6 +40,29 @@ fn up_it_moves_elements_up () {
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
+    ], board
+    )
+}
+
+
+
+#[test]
+fn move_multiple_rows_up() {
+    let mut board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [2, 2, 2, 2],
+        [4, 4, 2, 4],
+    ];
+
+    up(&mut board);
+
+    assert_eq!(
+        [
+            [2, 2, 2, 2],
+            [4, 4, 2, 4],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
     ], board
     )
 }
