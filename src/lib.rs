@@ -5,17 +5,31 @@ pub fn up(board: &mut[ [i32; 4]; 4]) {
 
             
             if board[i][j] != 0 {
-                let mut free_spot = j;
-                while occupied_spots[free_spot] != 0 {
-                    println!("gg");
-                    free_spot += 4;
+                let spot = j + i * 4 ;
+                if i == 0  {
+                    occupied_spots[spot] = 1;
+                    continue;
                 }
-                occupied_spots[free_spot] = 1;
-                free_spot /= 4;
-                println!("{}", free_spot);
-                board[free_spot][j] = board[i][j];
+                
+                let mut top_free_spot = j;
+
+                while occupied_spots[top_free_spot] != 1 {
+                    top_free_spot += 4;
+                    if top_free_spot > 15 {
+                        break;
+                    }
+                }
+
+                if top_free_spot > 15  {
+                    occupied_spots[spot] = 1;
+                    continue;
+                }
+
+                let top_row = top_free_spot / 4;
+                println!("{}", top_row);
+                board[top_row][j] = board[i][j];
                 board[i][j] = 0;
-                occupied_spots[ j + i * 4] = 0;
+                occupied_spots[spot] = 0;
                
             }
         }

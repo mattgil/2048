@@ -87,3 +87,24 @@ fn move_non_regular_rows_up() {
     ], board
     )
 }
+
+#[test]
+fn move_when_column_is_full_up() {
+    let mut board = [
+        [2, 0, 0, 0],
+        [2, 0, 2, 0],
+        [2, 0, 2, 2],
+        [4, 4, 8, 4],
+    ];
+
+    up(&mut board);
+
+    assert_eq!(
+        [
+            [2, 4, 2, 2],
+            [2, 0, 2, 4],
+            [2, 0, 8, 0],
+            [4, 0, 0, 0],
+    ], board
+    )
+}
