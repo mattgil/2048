@@ -2,7 +2,7 @@ use game2048::up;
 
 
 #[test]
-fn up_it_not_modify_empty_board () {
+fn it_not_modify_empty_board () {
     let mut board = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -24,7 +24,7 @@ fn up_it_not_modify_empty_board () {
 }
 
 #[test]
-fn up_it_moves_elements_up () {
+fn it_moves_elements_up () {
     let mut board = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -47,7 +47,7 @@ fn up_it_moves_elements_up () {
 
 
 #[test]
-fn move_multiple_rows_up() {
+fn move_multiple_rows() {
     let mut board = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -68,7 +68,7 @@ fn move_multiple_rows_up() {
 }
 
 #[test]
-fn move_non_regular_rows_up() {
+fn move_non_regular_rows() {
     let mut board = [
         [0, 0, 0, 0],
         [0, 0, 2, 0],
@@ -89,7 +89,7 @@ fn move_non_regular_rows_up() {
 }
 
 #[test]
-fn move_when_column_is_full_up() {
+fn move_when_column_is_full() {
     let mut board = [
         [2, 0, 0, 0],
         [2, 0, 2, 0],

@@ -28,14 +28,69 @@ pub fn up(board: &mut[ [i32; 4]; 4]) {
     }
 }
 
-pub fn down() {
+pub fn down(board: &mut[ [i32; 4]; 4]) {
+    let mut occupied_spots = [false; 16];
+    for i in (0..board.len()).rev() {
+        for j in 0..board[i].len()  {
+            if board[i][j] != 0 {
+                let spot = j + i*4;
+                occupied_spots[spot] = true;
+                let mut bottom_free_spot = 4*(board.len() - 1) + j;
+                while occupied_spots[bottom_free_spot] {
+                    bottom_free_spot -=4;
+                    if bottom_free_spot <= spot {
+                        break;
+                    }
+                }
 
+                if  bottom_free_spot <= spot {
+                    continue;
+                }
+
+                let bottom_row = bottom_free_spot/4;
+
+                board[bottom_row][j] = board[i][j];
+                board[i][j] = 0;
+                occupied_spots[bottom_free_spot] = true;
+                occupied_spots[spot] = false;
+            }
+        }
+    }
 }
 
-pub fn left() {
-
+pub fn left(board: &mut[ [i32; 4]; 4]) {
+    for i in 0..board.len()  {
+        let mut shift = 0;
+        for j in 0..board.len() {
+            if board[i][j] != 0 {
+                if  j == 0 {
+                    break;
+                }
+                board[i][j - shift] = board[i][j];
+                board[i][j] = 0;
+                if shift > 0{ 
+                    shift -= 1;
+                }
+            }
+        shift += 1;
+        }
+    }
 }
 
-pub fn right() {
+pub fn right(board: &mut[ [i32; 4]; 4]) {
+    for i in 0..board.len() {
+        let mut shift = board[i].len() - 1;
+        for j in (0..board[i].len()).rev() {
 
+            if board[i][j] != 0 {
+                if j == board[i].len() - 1 {
+                    break;
+                }
+                board[i][shift]  = board[i][j];
+                board[i][j] = 0;
+                shift -=1;
+            }
+        }
+        
+    }
 }
